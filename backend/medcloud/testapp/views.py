@@ -8,4 +8,5 @@ def home(request):
     msg += "Suleman updated"
     msg += "Asad updated"
     msg += "again suleman"
+    msg += "asad here"
     return HttpResponse(msg)
