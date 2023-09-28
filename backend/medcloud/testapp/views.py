@@ -6,4 +6,5 @@ def home(request):
     msg = "Suleman"
     msg += " Asad"
     msg += "Suleman updated"
+    msg += "Asad updated"
     return HttpResponse(msg)
