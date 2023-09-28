@@ -12,4 +12,5 @@ def home(request):
     msg += "suleman here"
     msg+="python dheeli hy"
     # some comment added by suleman
+    ###
     return HttpResponse(msg)
