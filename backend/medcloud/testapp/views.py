@@ -5,4 +5,5 @@ from django.http import HttpResponse
 def home(request):
     msg = "Suleman"
     msg += " Asad"
+    msg += "Suleman updated"
     return HttpResponse(msg)
