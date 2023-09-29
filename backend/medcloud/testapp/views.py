@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # Create your views here.
+
+
 def home(request):
     msg = "Suleman"
     msg += " Asad"
@@ -10,8 +12,9 @@ def home(request):
     msg += "again suleman"
     msg += "asad here"
     msg += "suleman here"
-    msg+="python dheeli hy"
+    msg += "python dheeli hy"
     # some comment added by suleman
     ###
-    ### this is org now
+    # this is org now
+    # trying to add changes here
     return HttpResponse(msg)
