@@ -18,4 +18,5 @@ def home(request):
     # this is org now
     # trying to add changes here
     # trying commit staged 12344
+    # hi there
     return HttpResponse(msg)
