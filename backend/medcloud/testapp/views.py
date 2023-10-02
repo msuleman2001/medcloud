@@ -5,20 +5,5 @@ from django.http import HttpResponse
 
 
 def home(request):
-    msg = "Suleman"
-    msg += " Asad"
-    msg += "Suleman updated"
-    msg += "Asad updated"
-    msg += "again suleman"
-    msg += "asad here"
-    msg += "suleman here"
-    msg += "python dheeli hy"
-    # some comment added by suleman
-    ###
-    # this is org now
-    # trying to add changes here
-    # trying commit staged 12344
-    # hi there
-    # by asad
-    # by suleman
+    msg = "test app"
     return HttpResponse(msg)
