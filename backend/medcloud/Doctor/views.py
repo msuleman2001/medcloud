@@ -2,32 +2,23 @@
 from django.http import JsonResponse
 
 # Create your views here.
-
-
-
-# add doctor function
+# add a new doctor in database
 def addDoctor(request):
-
     return JsonResponse({'text': 'Some JSON data is rendering'})
 
-
-# get doctors
+# get list of all doctors
 def getDoctors(request):
-
     return JsonResponse({'data': {"doctors":[{"name":'dr asad abudullah'}]}})
-
-# get doctor by id
+    
+# get a single doctor record
 def getDoctorById(request):
-
     return JsonResponse({'data': {"doctors":[{"name":'dr asad abudullah'}]}})
 
 
-# update doctor
+# update an existing doctor
 def updateDoctor(request):
-
     return JsonResponse({'data': {"doctors":[{"name":'dr asad abudullah'}]}})
 
-# search doctor
+# get list of doctors according to filter
 def searchDoctors(request):
-
     return JsonResponse({'data': {"doctors":[{"name":'dr asad abudullah'}]}})
