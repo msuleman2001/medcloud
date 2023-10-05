@@ -1,0 +1,17 @@
+:global(.rounded-select.ant-select) {
+  font-size: 45px !important;
+  border-radius: 20px;
+  background-color: "white";
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.127);
+}
+:global(.rounded-select.ant-select:focus-within) {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.315);
+}
+:global(.rounded-select .ant-select-selector) {
+  border: none !important;
+}
+:global(.rounded-select input),
+:global(.rounded-select .ant-select-selection-item),
+:global(.rounded-select .ant-select-selection-placeholder) {
+  padding-left: 10px !important;
+}

@@ -1,0 +1,4 @@
+:global(.patient-form label) {
+  font-weight: 700 !important;
+  color: rgba(0, 0, 0, 0.664) !important;
+}
