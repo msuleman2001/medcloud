@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --color-brand--1: #ffb545;
+  --color-brand--2: #00c46a;
+
+  --color-dark--0: #242a2e;
+  --color-dark--1: #2d3439;
+  --color-dark--2: #42484d;
+  --color-light--1: #aaa;
+  --color-light--2: #ececec;
+  --color-light--3: #d6dee0;
+}
+:root {
+  --primary-color-normal: #02b8f2;
+  --secdondar-color-normal: #18132a;
+  --secdondar-color-light: #18132af1;
+}
+/* .form-button .ant-btn {
+  height: auto !important;
+  background-color: #18132a !important;
+  color: white !important;
+}
+.form-button .ant-btn:hover {
+  color: white !important;
+  border-color: transparent !important;
+} */
+/* .login-title {
+  color: #02b8f2 !important;
+  margin-bottom: 4px !important;
+}
+.login-paragh {
+  color: white !important;
+} */
+/* .ant-typography {
+  margin: 0 !important;
+} */
+/* .general-title {
+  color: inherit !important;
+
+} */
+
+/* .ant-menu-item-selected {
+  background-color: #02b8f2 !important;
+  color: white !important;
+}
+.monthly-progress-chart .recharts-cartesian-axis-line {
+  display: none !important;
+}
+.monthly-progress-chart .recharts-cartesian-axis-tick-line {
+  display: none !important;
+} */
+/*pharmacy system */
+/* .dashboard-over-view .general-reset-table .ant-table-cell {
+  padding: 12px !important;
+}
+.dashboard-over-view .general-reset-table thead .ant-table-cell {
+  background-color: transparent !important;
+  border-bottom: 1px solid rgba(161, 156, 156, 0.336) !important;
+}
+.dashboard-over-view .general-reset-table tbody .ant-table-cell {
+  border-bottom: none !important;
+}
+.dashboard-over-view .general-reset-table tbody tr:first-child .ant-table-cell {
+  padding-top: 30px !important;
+}
+.dashboard-over-view .statis-wraper h4 {
+  font-weight: 700;
+}
+button {
+  height: auto !important;
+} */
+/* .dashboard-over-view .dashboard-overview-chart-filter .round {
+  border-radius: 45px;
+  overflow: hidden;
+  border: none !important;
+  box-shadow: 0px 0px 0px 1px #00000038;
+} */
+
+/* .dashboard-over-view .dashboard-overview-chart-filter .round:hover {
+  color: white !important ;
+  border: none !important;
+} */
+/* .ant-select-selector {
+  border: none !important;
+} */
+/* .custom-shadow {
+  box-shadow: 1px 1px 4px 2px rgba(128, 128, 128, 0.13) !important;
+} */
+/* Pharmacy  */
+/* .pharmacy-dashboard-overview .ant-select-arrow {
+  padding-right: 10px;
+}
+.pharmacy-dashboard-overview .ant-select {
+  padding: 20px !important;
+} */

@@ -1,0 +1,13 @@
+.patient-card {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.127);
+  background-color: var(--secdondar-color-normal) !important;
+  color: white !important;
+}
+.patient-card:hover {
+  background-color: var(--secdondar-color-light) !important;
+  cursor: pointer;
+  transform: translateY(-1px);
+}
+.patient-card-title {
+  color: white !important;
+}
