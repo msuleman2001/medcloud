@@ -9,4 +9,4 @@ backend/Lib/site-packages/_distutils_hack/__pycache__/__init__.cpython-311.pyc
 *.pyc
 backend/medcloud/Doctor/views.py
 backend/medcloud/Doctor/migrations/0001_initial.py
-.gitignore
+frontend/node_modules
