@@ -6,4 +6,5 @@ from django.http import HttpResponse
 
 def home(request):
     msg = "test app"
+    msg += "for zain"
     return HttpResponse(msg)
