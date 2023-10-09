@@ -52,9 +52,19 @@ def getDoctors(request):
         # Serialize the queryset to JSON format, excluding the 'id' field
         serialized_doctors = [
             {
-                'name': doctor.name,
-                'email': doctor.email,
-                'phone': doctor.phone,
+                'id' : doctor.id,
+               'name': doctor.name,
+               'email': doctor.email,
+               'phone': doctor.phone,
+               "license_no" : doctor.license_no,
+               "start_year" : doctor.start_year,
+               "clinic_address" : doctor.clinic_address,
+               "country" : doctor.country,
+               "added_by_id" : doctor.added_by_id,
+               "added_datetime" : doctor.added_datetime,
+               "last_update_date_time" : doctor.last_update_date_time,
+               "is_enabled" : doctor.is_enabled,
+               'speciality': doctor.speciality,
                 # Add more fields as needed
             }
             for doctor in doctors
