@@ -10,3 +10,7 @@ backend/Lib/site-packages/_distutils_hack/__pycache__/__init__.cpython-311.pyc
 backend/medcloud/Doctor/views.py
 backend/medcloud/Doctor/migrations/0001_initial.py
 frontend/node_modules
+backend/medcloud/db.sqlite3
+backend/medcloud/Patient/__init__.py
+backend/medcloud/Patient/migrations/__init__.py
+backend/medcloud/Patient/migrations/0001_initial.py
