@@ -8,7 +8,7 @@ class Doctor(models.Model):
     email = models.EmailField()
     name = models.CharField(max_length=255)
     phone = models.CharField(max_length=20)
-    license_no = models.CharField(max_length=50)
+    license_no = models.CharField(max_length=54)
     speciality = models.CharField(max_length=100)
     start_year = models.PositiveIntegerField()
     clinic_address = models.TextField()
