@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { DatePicker, Form, Input, Select, Typography } from "antd";
 import styles from "./PatientDetailsForm.module.css";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import RoundedButton from "../../general/RoundedButton/RoundedButton";
 const { Title } = Typography;
 export default function PatientDetailsForm() {
+  const [showForm, setShowForm] = useState(false);
   return (
-    <div className="mt-10 patient-form">
-      <Title level={3}>Patients details form</Title>
-      <div className="p-6 bg-white rounded-lg">
+    <div
+      className={`mt-10 patient-form bg-white shadow-lg border border-gray-100 rounded-md overflow-hidden duration-150 ${
+        !showForm ? "max-h-[50px] " : "max-h-[700px] "
+      }`}
+    >
+      <div
+        onClick={() => setShowForm((pState) => !pState)}
+        className="flex cursor-pointer justify-between px-5 py-3 rounded-lg "
+      >
+        <Title className={styles["title"]} level={4}>
+          Personal details
+        </Title>
+
+        <span className="flex cursor-pointer gap-1 items-center">
+          <span>Expand </span>
+          {showForm ? <IoIosArrowUp /> : <IoIosArrowDown />}
+        </span>
+      </div>
+
+      <div className={`p-6 rounded-lg duration-150 `}>
         <Form layout="vertical">
           <div className="flex gap-6">
             <Form.Item style={{ width: "100%" }} name={"name"} label="Name">
