@@ -148,15 +148,3 @@ def updateDoctor(request):
 
 
 
-# {
-#     "email": "abc@gmai.com",
-#     "name" : "asad",
-#     "phone" : "+923440059950",
-#     "license" : "abc123",
-#     "speciality" : "opthomologistophthalmologist",
-#     "start_year" : "2018",
-#     "clinic_address" : "BWP",
-#     "country" : "Pakistan",
-#     "added_by_id" : "1",
-#     "remarks" : "nothing"
-# }

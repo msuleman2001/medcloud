@@ -109,3 +109,18 @@ class DoctorViewTestCase(TestCase):
         self.assertEqual(response_data['doctors'][1]['name'], 'Doctor Two')
         self.assertEqual(response_data['doctors'][1]['speciality'], 'Dermatology')
         # Add more assertions for other fields as needed
+
+
+
+# {
+#     "email": "abc@gmai.com",
+#     "name" : "asad",
+#     "phone" : "+923440059950",
+#     "license" : "abc123",
+#     "speciality" : "opthomologist",
+#     "start_year" : "2018",
+#     "clinic_address" : "BWP",
+#     "country" : "Pakistan",
+#     "added_by_id" : "1",
+#     "remarks" : "nothing"
+# }
