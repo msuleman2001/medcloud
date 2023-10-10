@@ -89,3 +89,35 @@ def searchPatients(request):
         return JsonResponse({'message': 'Search functionality to be implemented'})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+
+@csrf_exempt
+def updatePatient(request, patient_id):
+    if request.method == 'PUT':
+        try:
+            # Parse the incoming JSON data
+            data = json.loads(request.body)
+
+            # Get the patient to update
+            patient = Patient.objects.get(patient_id=patient_id)
+
+            # Update the patient's information based on the parsed data
+            patient.patient_name = data['patient_name']
+            patient.patient_phone_number = data['patient_phone_number']
+            patient.patient_address = data['patient_address']
+            patient.patient_gender = data['patient_gender']
+            patient.patient_date_of_birth = data['patient_date_of_birth']
+            patient.patient_guardian = data.get('patient_guardian', None)
+            patient.last_updated_date_time = datetime.now()
+            patient.last_updated_id = data['last_updated_id']
+            patient.is_enabled = data.get('is_enabled', True)
+            patient.remarks = data.get('remarks', None)
+
+            # Save the updated patient object to the database
+            patient.save()
+
+            return JsonResponse({'message': 'Patient updated successfully'})
+        except (KeyError, Patient.DoesNotExist):
+            return JsonResponse({'error': 'Invalid JSON data format or patient not found'}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
