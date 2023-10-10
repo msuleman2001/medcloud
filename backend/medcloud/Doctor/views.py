@@ -27,8 +27,9 @@ def addDoctor(request):
                 added_by_id=data['added_by_id'],
                 added_datetime=datetime.now(),
                 last_update_date_time=datetime.now(),
+                remarks=data['remarks'],
                 is_enabled=False,
-                remarks=data['remarks']
+                
             )
             
             # Save the Doctor object to the database
@@ -52,19 +53,20 @@ def getDoctors(request):
         # Serialize the queryset to JSON format, excluding the 'id' field
         serialized_doctors = [
             {
-                'id' : doctor.id,
-               'name': doctor.name,
-               'email': doctor.email,
-               'phone': doctor.phone,
-               "license_no" : doctor.license_no,
-               "start_year" : doctor.start_year,
-               "clinic_address" : doctor.clinic_address,
-               "country" : doctor.country,
-               "added_by_id" : doctor.added_by_id,
-               "added_datetime" : doctor.added_datetime,
-               "last_update_date_time" : doctor.last_update_date_time,
-               "is_enabled" : doctor.is_enabled,
-               'speciality': doctor.speciality,
+                'id': doctor.id,
+                'name': doctor.name,
+                'email': doctor.email,
+                'phone': doctor.phone,
+                'license_no': doctor.license_no,
+                'speciality': doctor.speciality,
+                'start_year': doctor.start_year,
+                'clinic_address': doctor.clinic_address,
+                'country': doctor.country,
+                'added_by_id': doctor.added_by_id,
+                'added_datetime': doctor.added_datetime,
+                'last_update_date_time': doctor.last_update_date_time,
+                'is_enabled': doctor.is_enabled,
+                'remarks': doctor.remarks,
                 # Add more fields as needed
             }
             for doctor in doctors
@@ -143,3 +145,18 @@ def updateDoctor(request):
         return JsonResponse({'error': 'Doctor not found'}, status=404)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+
+
+# {
+#     "email": "abc@gmai.com",
+#     "name" : "asad",
+#     "phone" : "+923440059950",
+#     "license" : "abc123",
+#     "speciality" : "opthomologistophthalmologist",
+#     "start_year" : "2018",
+#     "clinic_address" : "BWP",
+#     "country" : "Pakistan",
+#     "added_by_id" : "1",
+#     "remarks" : "nothing"
+# }
