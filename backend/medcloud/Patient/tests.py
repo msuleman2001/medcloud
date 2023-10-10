@@ -37,6 +37,7 @@ class PatientViewsTest(TestCase):
         url = reverse('search_patients')
         response = self.client.get(url, {'name': 'John'})
         self.assertEqual(response.status_code, 200)
+        # You can add more assertions to check the content of the response
 
     def test_updatePatient(self):
         # Create a patient to update
@@ -72,6 +73,8 @@ class PatientViewsTest(TestCase):
         updated_patient = Patient.objects.get(pk=patient.pk)
         self.assertEqual(updated_patient.patient_name, "Updated John Doe")
         self.assertEqual(updated_patient.patient_phone_number, "987-654-3210")
+        # Add more assertions to check other fields
+
     # Add more test cases as needed for other views or edge cases
 
 
