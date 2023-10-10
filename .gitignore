@@ -18,3 +18,4 @@ backend/medcloud/db.sqlite3
 backend/medcloud/Patient/__init__.py
 backend/medcloud/db.sqlite3
 backend/medcloud/db.sqlite3
+backend/medcloud/db.sqlite3
