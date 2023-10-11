@@ -16,6 +16,7 @@ class Doctor(models.Model):
     added_by_id = models.PositiveIntegerField()
     added_datetime = models.DateTimeField(auto_now_add=True)
     last_update_date_time = models.DateTimeField(auto_now=True)
+    is_enabled= models.BooleanField(default=False)
     remarks = models.TextField()
 
     def __str__(self):
