@@ -1,0 +1,11 @@
+:global(.rounded-input) {
+  border-radius: 20px !important;
+  width: 170px;
+  background-color: "white";
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.127);
+  border: none !important;
+  padding-left: 20px !important;
+}
+:global(.rounded-input:focus-within) {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.315);
+}
