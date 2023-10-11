@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
 from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.paginator import Paginator
 # Create your views here.
 # add a new doctor in database
 @csrf_exempt
@@ -45,82 +46,54 @@ def addDoctor(request):
 
 
 # get list of all doctors
+@csrf_exempt
 def getDoctors(request):
     try:
-        # Query all doctors from the database
-        doctors = Doctor.objects.all()
+        # Get query parameters for pagination
+        page_number = request.GET.get('page', 1)
+        per_page = request.GET.get('per_page', 10)
 
-        # Serialize the queryset to JSON format, excluding the 'id' field
+        # Build a dictionary to hold filter criteria
+        filters = {}
+        for param, value in request.GET.items():
+            if param in ['page', 'per_page']:
+                continue  # Skip pagination parameters
+            filters[f'{param}__icontains'] = value  # Assume case-insensitive substring matching
+
+        # Query doctors from the database with the dynamic filters
+        doctors = Doctor.objects.filter(**filters)
+
+        # Create a paginator with the filtered queryset
+        paginator = Paginator(doctors, per_page)
+
+        # Get the specified page
+        page = paginator.page(page_number)
+
+        # Serialize the queryset to JSON format
         serialized_doctors = [
             {
                 'id': doctor.id,
                 'name': doctor.name,
-                'email': doctor.email,
-                'phone': doctor.phone,
-                'license_no': doctor.license_no,
-                'speciality': doctor.speciality,
-                'start_year': doctor.start_year,
-                'clinic_address': doctor.clinic_address,
-                'country': doctor.country,
-                'added_by_id': doctor.added_by_id,
-                'added_datetime': doctor.added_datetime,
-                'last_update_date_time': doctor.last_update_date_time,
-                'is_enabled': doctor.is_enabled,
-                'remarks': doctor.remarks,
-                # Add more fields as needed
+                # Add other fields as needed
             }
-            for doctor in doctors
+            for doctor in page
         ]
 
         # Create a JSON response with the serialized data
-        response_data = {'doctors': serialized_doctors}
+        response_data = {
+            'doctors': serialized_doctors,
+            'total_pages': paginator.num_pages,
+            'current_page': page_number,
+            'total_records': paginator.count,
+            'records_per_page': per_page,
+        }
 
         return JsonResponse(response_data)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
 # get list of doctors according to filter
-def searchDoctors(request):
-    try:
-        # Get a dictionary of query parameters from the request
-        query_params = request.GET.dict()
 
-        # Create a queryset that initially includes all doctors
-        doctors = Doctor.objects.all()
-
-        # Apply filters based on query parameters
-        for field, value in query_params.items():
-            # Use case-insensitive partial match for all fields
-            filter_arg = f"{field}__icontains"
-            doctors = doctors.filter(**{filter_arg: value})
-
-        # Serialize the queryset to JSON format
-        serialized_doctors = [
-            {
-                'id' : doctor.id,
-               'name': doctor.name,
-               'email': doctor.email,
-               'phone': doctor.phone,
-               "license_no" : doctor.license_no,
-               "start_year" : doctor.start_year,
-               "clinic_address" : doctor.clinic_address,
-               "country" : doctor.country,
-               "added_by_id" : doctor.added_by_id,
-               "added_datetime" : doctor.added_datetime,
-               "last_update_date_time" : doctor.last_update_date_time,
-               "is_enabled" : doctor.is_enabled,
-               'speciality': doctor.speciality,
-                 # Add more fields as needed
-            }
-            for doctor in doctors
-        ]
-        # Create a JSON response with the serialized data
-        response_data = {'doctors': serialized_doctors}
-
-        return JsonResponse(response_data)
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
-    
 @csrf_exempt    
 def updateDoctor(request):
     try:

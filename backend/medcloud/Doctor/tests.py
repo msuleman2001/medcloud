@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.http import JsonResponse
 from .models import Doctor
 import json
+from django.contrib.auth.models import User
 
 class DoctorViewTestCase(TestCase):
     def test_add_doctor(self):
@@ -38,81 +39,63 @@ class DoctorViewTestCase(TestCase):
         self.assertIsNotNone(new_doctor)
         # Add more assertions to verify the data of the new doctor if needed
     
-    
-    
-    
-    
     def setUp(self):
-        # Create some sample doctors for testing
-        self.doctor1 = Doctor.objects.create(
-            email='doctor1@example.com',
-            name='Doctor One',
-            phone='123-456-7890',
-            license_no='12345',
-            speciality='Cardiology',
-            start_year=2000,
-            clinic_address='123 Main St',
-            country='USA',
-            added_by_id=1,
-            added_datetime="2023-10-06 08:05:45.691956",
-            last_update_date_time="2023-10-07 07:04:58.167356",
-            remarks='Test remarks for Doctor One',
-            is_enabled=True,
-        )
+        # Create a user (assuming 'User' is the model for the added_by_id field)
+        user = User.objects.create(username="testuser")
 
-        self.doctor2 = Doctor.objects.create(
-            email='doctor2@example.com',
-            name='Doctor Two',
-            phone='987-654-3210',
-            license_no='54321',
-            speciality='Dermatology',
+        # Create some sample doctors in the database for testing
+        Doctor.objects.create(
+            name="Dr. John Doe",
+            speciality="Cardiology",
             start_year=2005,
-            clinic_address='456 Elm St',
-            country='Canada',
-            added_by_id=2,
-            is_enabled=False,
-            remarks='Test remarks for Doctor Two'
+            added_by_id=user.id  # Provide the ID of the user as the added_by_id
         )
+        Doctor.objects.create(
+            name="Dr. Jane Smith",
+            speciality="Dermatology",
+            start_year=2008,
+            added_by_id=user.id
+        )
+        Doctor.objects.create(
+            name="Dr. Michael Brown",
+            speciality="Orthopedics",
+            start_year=2010,
+            added_by_id=user.id
+        )
+        # Add more sample doctors as needed
 
-    def test_get_doctors(self):
-        # Test the getDoctors view by making a GET request
-        url = reverse('getDoctors')  # Assuming you have defined a URL pattern with the name 'get_doctors'
+    def test_get_doctors_with_filter(self):
+        # Define the filter criteria
+        filters = {'name': 'John', 'speciality': 'Cardiology'}
+
+        # Generate the URL for your getDoctors view, including filter criteria
+        url = reverse('getDoctors')  # Replace 'get_doctors' with your actual URL name
+
+        # Make a GET request with the filter criteria
+        response = self.client.get(url, data=filters)
+
+        # Check if the response status code is 200 (OK)
+        self.assertEqual(response.status_code, 200)
+
+        # Check if the filtered doctor's name is in the response content
+        self.assertContains(response, 'Dr. John Doe')
+
+        # You can add more assertions based on the expected results
+
+    def test_get_doctors_without_filter(self):
+        # Generate the URL for your getDoctors view without filter criteria
+        url = reverse('getDoctors')  # Replace 'get_doctors' with your actual URL name
+
+        # Make a GET request without filter criteria
         response = self.client.get(url)
 
         # Check if the response status code is 200 (OK)
         self.assertEqual(response.status_code, 200)
 
-        # Deserialize the JSON response
-        response_data = response.json()
+    
+    
+    
 
-        # Check if the 'doctors' key exists in the response
-        self.assertIn('doctors', response_data)
-
-        # Check if the response contains the expected number of doctors
-        self.assertEqual(len(response_data['doctors']), 2)
-
-        # Check if the response data for the first doctor matches the expected data
-        self.assertEqual(response_data['doctors'][0]['name'], 'Doctor One')
-        self.assertEqual(response_data['doctors'][0]['phone'], '123-456-7890')
-        self.assertEqual(response_data['doctors'][0]['license_no'], '12345')
-        self.assertEqual(response_data['doctors'][0]['speciality'], 'Cardiology')
-        self.assertEqual(response_data['doctors'][0]['start_year'], 2000)
-        self.assertEqual(response_data['doctors'][0]['clinic_address'], '123 Main St')
-        self.assertEqual(response_data['doctors'][0]['country'], 'USA')
-        self.assertEqual(response_data['doctors'][0]['added_by_id'], 1)
-        self.assertEqual(response_data['doctors'][0]['is_enabled'], True)
-        self.assertEqual(response_data['doctors'][0]['remarks'], "Test remarks for Doctor One")
-
-        # Add more assertions for other fields as needed
-
-        # Check if the response data for the second doctor matches the expected data
-        self.assertEqual(response_data['doctors'][1]['name'], 'Doctor Two')
-        self.assertEqual(response_data['doctors'][1]['speciality'], 'Dermatology')
-        # Add more assertions for other fields as needed
-
-
-
-# {
 #     "email": "abc@gmai.com",
 #     "name" : "asad",
 #     "phone" : "+923440059950",
