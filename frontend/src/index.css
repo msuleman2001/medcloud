@@ -1,19 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-:root {
-  --color-brand--1: #ffb545;
-  --color-brand--2: #00c46a;
 
-  --color-dark--0: #242a2e;
-  --color-dark--1: #2d3439;
-  --color-dark--2: #42484d;
-  --color-light--1: #aaa;
-  --color-light--2: #ececec;
-  --color-light--3: #d6dee0;
-}
 :root {
   --primary-color-normal: #02b8f2;
+  --primary-color-200: #b3eafb;
+  --red-color-normal: #f1010d;
+
   --secdondar-color-normal: #18132a;
   --secdondar-color-light: #18132af1;
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { DatePicker, Form, Input, Select, Typography } from "antd";
 import styles from "./PatientDetailsForm.module.css";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import RoundedButton from "../../general/RoundedButton/RoundedButton";
+import RoundedButton from "../../general/rounded-button/RoundedButton";
 const { Title } = Typography;
 export default function PatientDetailsForm() {
   const [showForm, setShowForm] = useState(false);
@@ -21,7 +21,7 @@ export default function PatientDetailsForm() {
         </Title>
 
         <span className="flex cursor-pointer gap-1 items-center">
-          <span>Expand </span>
+          <span className="text-sm">Expand </span>
           {showForm ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </span>
       </div>
