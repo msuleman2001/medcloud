@@ -1,22 +1,10 @@
 import { Table, Typography } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
+import { useGetDoctorsQuery } from "../../../../store/clinic/clinic-api";
 const { Title } = Typography;
 
-// email = models.EmailField()
-// name = models.CharField(max_length=255)
-// phone = models.CharField(max_length=20)
-// license_no = models.CharField(max_length=54)
-// speciality = models.CharField(max_length=100)
-// start_year = models.PositiveIntegerField()
-// clinic_address = models.TextField()
-// country = models.CharField(max_length=50)
-// added_by_id = models.PositiveIntegerField()
-// added_datetime = models.DateTimeField(auto_now_add=True)
-// last_update_date_time = models.DateTimeField(auto_now=True)
-// is_enabled= models.BooleanField(default=False)
-// remarks = models.TextField()
-
 export default function DoctorsTable() {
+  const { data, error } = useGetDoctorsQuery();
   const dataSource = [
     {
       key: "1",
@@ -48,6 +36,20 @@ export default function DoctorsTable() {
       key: "email",
     },
   ];
+  console.log(data);
+  console.log(error);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await fetch("http://127.0.0.1:8000/doctor/doctors/");
+  //       const data = await res.json();
+  //       console.log(data);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
   return (
     <div className="shadow-lg bg-white rounded-lg overflow-hidden border border-red-600">
       <Title level={2}>Doctors</Title>

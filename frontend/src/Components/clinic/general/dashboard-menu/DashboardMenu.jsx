@@ -42,7 +42,7 @@ const DashboardMenu = () => {
   };
 
   return (
-    <sidebar className={"w-[300px] px-6 bg-[#18132A]  pt-5 "}>
+    <div className={"w-[300px] px-6 bg-[#18132A]  pt-5 "}>
       <Menu
         defaultSelectedKeys={["/dashboard/appointments"]}
         defaultOpenKeys={["sub1"]}
@@ -62,7 +62,7 @@ const DashboardMenu = () => {
           </Menu.Item>
         ))}
       </Menu>
-    </sidebar>
+    </div>
   );
 };
 
