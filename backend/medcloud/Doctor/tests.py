@@ -96,14 +96,63 @@ class DoctorViewTestCase(TestCase):
     
     
 
-#     "email": "abc@gmai.com",
-#     "name" : "asad",
-#     "phone" : "+923440059950",
-#     "license" : "abc123",
-#     "speciality" : "opthomologist",
-#     "start_year" : "2018",
-#     "clinic_address" : "BWP",
-#     "country" : "Pakistan",
-#     "added_by_id" : "1",
-#     "remarks" : "nothing"
-# }
+# {
+#       "email": "abc10@gmail.com",
+#       "name": "Asad",
+#       "phone": "+923440059960",
+#       "license": "abc123",
+#       "speciality": "Ophthalmologist",
+#       "start_year": "2018",
+#       "clinic_address": "BWP",
+#       "country": "Pakistan",
+#       "added_by_id": "1",
+#       "remarks": "Nothing"
+#     },
+#     {
+#       "email": "abc11@gmail.com",
+#       "name": "Asad",
+#       "phone": "+923440059961",
+#       "license": "abc123",
+#       "speciality": "Ophthalmologist",
+#       "start_year": "2018",
+#       "clinic_address": "BWP",
+#       "country": "Pakistan",
+#       "added_by_id": "1",
+#       "remarks": "Nothing"
+#     },
+#     {
+#       "email": "abc12@gmail.com",
+#       "name": "Asad",
+#       "phone": "+923440059962",
+#       "license": "abc123",
+#       "speciality": "Ophthalmologist",
+#       "start_year": "2018",
+#       "clinic_address": "BWP",
+#       "country": "Pakistan",
+#       "added_by_id": "1",
+#       "remarks": "Nothing"
+#     },
+#     {
+#       "email": "abc13@gmail.com",
+#       "name": "Asad",
+#       "phone": "+923440059963",
+#       "license": "abc123",
+#       "speciality": "Ophthalmologist",
+#       "start_year": "2018",
+#       "clinic_address": "BWP",
+#       "country": "Pakistan",
+#       "added_by_id": "1",
+#       "remarks": "Nothing"
+#     },
+#     {
+#       "email": "abc14@gmail.com",
+#       "name": "Asad",
+#       "phone": "+923440059964",
+#       "license": "abc123",
+#       "speciality": "Ophthalmologist",
+#       "start_year": "2018",
+#       "clinic_address": "BWP",
+#       "country": "Pakistan",
+#       "added_by_id": "1",
+#       "remarks": "Nothing"
+#     }
