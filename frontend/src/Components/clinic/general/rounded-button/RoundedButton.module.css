@@ -2,7 +2,14 @@
   background-color: var(--primary-color-normal) !important;
   color: white;
 }
+:global(.uppercase) {
+  text-transform: uppercase;
+}
 .rounded-button:hover {
   background-color: var(--primary-color-normal) !important;
+  color: white !important;
+}
+.rounded-button:disabled {
+  background-color: var(--primary-color-200) !important;
   color: white !important;
 }
