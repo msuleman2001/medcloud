@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'Doctor',
     'Patient',
 
@@ -50,6 +51,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOW_ALL_ORIGINS = True  # Allow requests from all origins, change this in production.
+CORS_ALLOW_CREDENTIALS = True  # Allow cookies to be included in CORS requests (if needed).
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Replace with your frontend's origin URL
+    "https://yourproductionurl.com",
 ]
 
 ROOT_URLCONF = 'medcloud.urls'
