@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import LoginPage from "./pages/general-pages/login-page/LoginPage";
+import ClinicLoginPage from "./pages/clinic/login-page/LoginPage";
 import DashboardLayout from "./Components/pharmacy/general/DashboardLayout";
 import DashboardPharmacyOverviewPage from "./pages/pharmacy/dashboard-overview-page/DashboardOverviewPage";
 import DashboardPharmacyMenu from "./Components/pharmacy/general/DashboardMenu";
@@ -16,7 +17,7 @@ function App() {
         <Routes>
           <Route>
             <Route index element={<Navigate replace to={"login"} />} />
-            <Route path="login" element={<LoginPage />} />
+            <Route path="login" element={<ClinicLoginPage />} />
             <Route
               path="dashboard"
               element={<DashboardLayout sidebar={<DashboardClinicMenu />} />}

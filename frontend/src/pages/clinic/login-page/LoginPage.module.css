@@ -1,0 +1,9 @@
+.login-page {
+  background-color: var(--secdondar-color-normal);
+}
+.login-title {
+  color: var(--primary-color-normal);
+}
+.login-paragraph {
+  color: white;
+}

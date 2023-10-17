@@ -1,5 +1,5 @@
 import { Table, Typography } from "antd";
-import React, { useEffect } from "react";
+import React from "react";
 import { useGetDoctorsQuery } from "../../../../store/clinic/clinic-api";
 const { Title } = Typography;
 
@@ -38,18 +38,7 @@ export default function DoctorsTable() {
   ];
   console.log(data);
   console.log(error);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await fetch("http://127.0.0.1:8000/doctor/doctors/");
-  //       const data = await res.json();
-  //       console.log(data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+
   return (
     <div className="shadow-lg bg-white rounded-lg overflow-hidden border border-red-600">
       <Title level={2}>Doctors</Title>

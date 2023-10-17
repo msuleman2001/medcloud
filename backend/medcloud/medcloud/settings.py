@@ -58,10 +58,10 @@ CORS_ALLOW_ALL_ORIGINS = True  # Allow requests from all origins, change this in
 CORS_ALLOW_CREDENTIALS = True  # Allow cookies to be included in CORS requests (if needed).
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Replace with your frontend's origin URL
-    "https://yourproductionurl.com",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:5173",  # Replace with your frontend's origin URL
+#     "https://yourproductionurl.com",
+# ]
 
 ROOT_URLCONF = 'medcloud.urls'
 
