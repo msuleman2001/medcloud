@@ -8,21 +8,20 @@ import RoundedSelect from "../../general/rounded-select/RoundedSelect";
 import RoundedInput from "../../general/rounded-input/RoundedInput";
 import NewMedicineForm from "../new-medicine-form/NewMedicineForm";
 const { Title } = Typography;
-export default function MedicineList({ onMedicineAdd, rows }) {
+export default function MedicineList({
+  onMedicineAdd,
+  prescribedMedicine,
+  onMedicineRemove,
+  onMedicineEdit,
+  toBeUpdatedMedicine,
+}) {
   const columns = [
     {
       title: "Medicine Name",
       dataIndex: "medicineName",
       key: "medicineName",
       render: (data) => {
-        return (
-          <RoundedSelect
-            size="middle"
-            options={[{ value: data, label: data }]}
-            defaultValue={data}
-            disabled={true}
-          />
-        );
+        return <div>{data}</div>;
       },
     },
     {
@@ -31,14 +30,7 @@ export default function MedicineList({ onMedicineAdd, rows }) {
       key: "medicinePotency",
       render: (data) => {
         console.log(data);
-        return (
-          <RoundedSelect
-            size="middle"
-            options={[{ value: data, label: data }]}
-            defaultValue={data}
-            disabled={true}
-          />
-        );
+        return <div>{data}</div>;
       },
     },
     {
@@ -46,14 +38,7 @@ export default function MedicineList({ onMedicineAdd, rows }) {
       dataIndex: "medicineType",
       key: "medicineType",
       render: (medicineType) => {
-        return (
-          <RoundedSelect
-            size="middle"
-            options={[{ value: medicineType, label: medicineType }]}
-            defaultValue={medicineType}
-            disabled={true}
-          />
-        );
+        return <div>{medicineType}</div>;
       },
     },
     {
@@ -61,20 +46,24 @@ export default function MedicineList({ onMedicineAdd, rows }) {
       dataIndex: "medicineDose",
       key: "medicineDose",
       render: (dose) => {
-        return <RoundedInput size={"large"} value={dose} disabled={true} />;
+        return <div>{dose}</div>;
       },
     },
     {
       title: "Actions",
       dataIndex: "medicineDose",
       key: Math.random(),
-      render: () => {
+      render: (_, rowData, index) => {
         return (
           <div className="flex gap-4 items-center">
-            <div className={`${styles["edit-icon"]} px-2 py-1 cursor-pointer`}>
+            <div
+              onClick={onMedicineEdit.bind(null, rowData)}
+              className={`${styles["edit-icon"]} px-2 py-1 cursor-pointer`}
+            >
               <AiTwotoneEdit />
             </div>
             <div
+              onClick={onMedicineRemove.bind(null, index)}
               className={`${styles["delete-icon"]} px-2 py-1 cursor-pointer`}
             >
               <AiTwotoneDelete />
@@ -91,11 +80,14 @@ export default function MedicineList({ onMedicineAdd, rows }) {
           Prescriptions
         </Title>
       </div>
-      <NewMedicineForm onMedicineAdd={onMedicineAdd} />
+      <NewMedicineForm
+        defaultValues={toBeUpdatedMedicine}
+        onMedicineAdd={onMedicineAdd}
+      />
       <Table
         rowKey={"id"}
         pagination={false}
-        dataSource={rows}
+        dataSource={prescribedMedicine}
         columns={columns}
       />
     </div>

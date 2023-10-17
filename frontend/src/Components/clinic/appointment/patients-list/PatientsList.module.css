@@ -1,0 +1,6 @@
+.icon-btn {
+  background-color: var(--secdondar-color-normal);
+}
+.icon-btn:hover {
+  background-color: var(--secdondar-color-light);
+}
