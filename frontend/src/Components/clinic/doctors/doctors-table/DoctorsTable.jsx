@@ -1,10 +1,13 @@
 import { Table, Typography } from "antd";
-import React from "react";
-import { useGetDoctorsQuery } from "../../../../store/clinic/clinic-api";
+import React, { useEffect } from "react";
+import {
+  useGetDoctorsQuery,
+  useGetTestProductQuery,
+} from "../../../../store/clinic/clinic-api";
 const { Title } = Typography;
 
 export default function DoctorsTable() {
-  const { data, error } = useGetDoctorsQuery();
+  const { data, error, isLoading } = useGetTestProductQuery();
   const dataSource = [
     {
       key: "1",
@@ -37,12 +40,19 @@ export default function DoctorsTable() {
     },
   ];
   console.log(data);
-  console.log(error);
+  // console.log(error);
 
   return (
-    <div className="shadow-lg bg-white rounded-lg overflow-hidden border border-red-600">
-      <Title level={2}>Doctors</Title>
-      <Table pagination={false} dataSource={dataSource} columns={columns} />
+    <div className="shadow-lg p-4 bg-white rounded-lg overflow-hidden border">
+      <Title level={3} className="px-4">
+        Doctors in database
+      </Title>
+      <Table
+        loading={isLoading}
+        pagination={false}
+        dataSource={dataSource}
+        columns={columns}
+      />
     </div>
   );
 }
