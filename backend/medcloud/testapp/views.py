@@ -1,9 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
+from rest_framework import generics
+from testapp.models import Product
+from  rest_framework.response import Response
+from testapp.serializers import ProductSerializer
+# from django.http import Http404
+from django.shortcuts import get_object_or_404
+from  rest_framework.decorators import api_view
 # Create your views here.
 
 
-def home(request):
-    #this is doctor branch
-    msg = "test app"
+class ProductListView(generics.ListAPIView):
+  queryset=Product.objects.all()
+  serializer_class=ProductSerializer
