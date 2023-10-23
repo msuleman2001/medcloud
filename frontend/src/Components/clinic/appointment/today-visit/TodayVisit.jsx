@@ -4,22 +4,32 @@ import styles from "./TodayVisit.module.css";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import RoundedButton from "../../general/rounded-button/RoundedButton";
 import MedicineList from "../medicine-list/MedicineList";
+import NewLabTestForm from "../new-lab-test-form/NewLabTestForm";
 const { Title } = Typography;
 export default function TodayVisitForm() {
   const [showForm, setShowForm] = useState(true);
+  const [toBeUpdatedMedicine, setToBeUpdatedMedicine] = useState(null);
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
 
-  const [rows, setRows] = useState([]);
-  const handleAddRow = (data) => {
-    console.log(data);
-    setRows([...rows, data]);
+  const [prescribedMedicine, setPrescribedMedicine] = useState([]);
+  const handleMedicineAdd = (newMedicine) => {
+    setPrescribedMedicine((preState) => [...preState, newMedicine]);
   };
-  const handleRemoveRow = (index) => {
-    const newRows = [...rows];
-    newRows.splice(index, 1);
-    setRows(newRows);
+  const handleMedicineRemove = (medicineIndex) => {
+    setPrescribedMedicine((preState) =>
+      preState.filter((medicine, index) => index !== medicineIndex)
+    );
+  };
+  const handleMedicineEdit = (medicineDetails) => {
+    console.log(medicineDetails);
+    setPrescribedMedicine((preMedicineState) =>
+      preMedicineState.filter(
+        (medicineItem) => medicineDetails.id !== medicineItem.id
+      )
+    );
+    setToBeUpdatedMedicine(medicineDetails);
   };
 
   return (
@@ -80,13 +90,16 @@ export default function TodayVisitForm() {
           >
             <Input size="large" style={{ width: "100%" }} />
           </Form.Item>
-          <div>
-            <MedicineList
-              rows={rows}
-              handleRemoveRow={handleRemoveRow}
-              onMedicineAdd={handleAddRow}
-            />
-          </div>
+
+          <MedicineList
+            toBeUpdatedMedicine={toBeUpdatedMedicine}
+            prescribedMedicine={prescribedMedicine}
+            onMedicineRemove={handleMedicineRemove}
+            onMedicineAdd={handleMedicineAdd}
+            onMedicineEdit={handleMedicineEdit}
+          />
+          <NewLabTestForm />
+
           <div className="flex w-full justify-end">
             <div className="w-fit">
               <RoundedButton uppercase={true}>Add patient visit</RoundedButton>
