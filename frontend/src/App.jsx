@@ -9,6 +9,7 @@ import DashboardPharmacyMenu from "./Components/pharmacy/general/DashboardMenu";
 import DashboardDoctorsPage from "./pages/clinic/doctors-page/DoctorsPage";
 import DashboardAppointmentPage from "./pages/clinic/appointment-page/AppointmentPage";
 import DashboardClinicMenu from "./Components/clinic/general/dashboard-menu/DashboardMenu";
+import DoctorSignUp from "./pages/clinic/doctors-page/signup";
 function App() {
   return (
     <>
@@ -29,6 +30,7 @@ function App() {
               />
               <Route path="doctors" element={<DashboardDoctorsPage />} />
               <Route path="patients" element={<DashboardDoctorsPage />} />
+              <Route path="doctor/signup" element={<DoctorSignUp />} />
             </Route>
           </Route>
           {/* pharmacy routes */}

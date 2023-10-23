@@ -7,7 +7,6 @@ const clinicApi = baseApi.injectEndpoints({
       query: () => "doctor/doctors",
     }),
     getTestProduct: build.query({
-      // query: () => "",
       query: () => "test/product",
     }),
   }),

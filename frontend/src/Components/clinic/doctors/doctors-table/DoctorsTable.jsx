@@ -1,4 +1,4 @@
-import { Table, Typography } from "antd";
+import { Table, Typography, Pagination } from "antd";
 import React, { useEffect } from "react";
 import {
   useGetDoctorsQuery,
@@ -9,18 +9,18 @@ const { Title } = Typography;
 export default function DoctorsTable() {
   const { data, error, isLoading } = useGetTestProductQuery();
   const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      phone: "03144832432",
-      email: "abuzain432432@gmail.com",
-    },
-    {
-      key: "2",
-      name: "John",
-      phone: "03144832432",
-      email: "abuzain432432@gmail.com",
-    },
+    // {
+    //   key: "1",
+    //   name: "Mike",
+    //   phone: "03144832432",
+    //   email: "abuzain432432@gmail.com",
+    // },
+    // {
+    //   key: "2",
+    //   name: "John",
+    //   phone: "03144832432",
+    //   email: "abuzain432432@gmail.com",
+    // },
   ];
   const columns = [
     {
@@ -29,14 +29,14 @@ export default function DoctorsTable() {
       key: "name",
     },
     {
-      title: "Phone",
-      dataIndex: "phone",
-      key: "phone",
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
+      title: "price",
+      dataIndex: "price",
+      key: "price",
     },
   ];
   console.log(data);
@@ -50,9 +50,12 @@ export default function DoctorsTable() {
       <Table
         loading={isLoading}
         pagination={false}
-        dataSource={dataSource}
+        dataSource={data}
         columns={columns}
       />
+      <div className="flex justify-center mt-4">
+        <Pagination hideOnSinglePage={true} total={1080} />
+      </div>
     </div>
   );
 }
