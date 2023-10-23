@@ -119,51 +119,52 @@
 #     except Exception as e:
 #         return JsonResponse({'error': str(e)}, status=500)
 from .models import Doctor
-from .serializer import DoctorSerializer
+from .serializer import DoctorRegistrationSerializer
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 class addDoctor(APIView):
     def post(self, request):
-        serializer = DoctorSerializer(data=request.data)
+        serializer = DoctorRegistrationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Doctor added successfully'}, status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class getDoctors(APIView):
-    def get(self, request):
-        query = request.query_params.get('query')
-        try:
-            doctor = Doctor.objects.get(pk=query)
-            serializer = DoctorSerializer(doctor)
-            return Response(serializer.data)
-        except Doctor.DoesNotExist:
-            return Response({'error': 'Doctor not found'}, status=status.HTTP_404_NOT_FOUND)
 
-    # def updateDoctor(self, request):
-    #     query = request.query_params.get('query')
-    #     try:
-    #         doctor = Doctor.objects.get(pk=query)
-    #         serializer = DoctorSerializer(doctor, data=request.data)
-    #         if serializer.is_valid():
-    #             serializer.save()
-    #             return Response({'message': 'Doctor updated successfully'})
-    #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    #     except Doctor.DoesNotExist:
-    #         return Response({'error': 'Doctor not found'}, status=status.HTTP_404_NOT_FOUND)
+# class getDoctors(APIView):
+#     def get(self, request):
+#         query = request.query_params.get('query')
+#         try:
+#             doctor = Doctor.objects.get(pk=query)
+#             serializer = DoctorSerializer(doctor)
+#             return Response(serializer.data)
+#         except Doctor.DoesNotExist:
+#             return Response({'error': 'Doctor not found'}, status=status.HTTP_404_NOT_FOUND)
+
+#     # def updateDoctor(self, request):
+#     #     query = request.query_params.get('query')
+#     #     try:
+#     #         doctor = Doctor.objects.get(pk=query)
+#     #         serializer = DoctorSerializer(doctor, data=request.data)
+#     #         if serializer.is_valid():
+#     #             serializer.save()
+#     #             return Response({'message': 'Doctor updated successfully'})
+#     #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     #     except Doctor.DoesNotExist:
+#     #         return Response({'error': 'Doctor not found'}, status=status.HTTP_404_NOT_FOUND)
 
 
-class updateDoctor(APIView):
-    def put(self, request):
-        query = request.query_params.get('query')
-        try:
-            doctor = Doctor.objects.get(pk=query)
-            serializer = DoctorSerializer(doctor, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response({'message': 'Doctor updated successfully'})
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except Doctor.DoesNotExist:
-            return Response({'error': 'Doctor not found'}, status=status.HTTP_404_NOT_FOUND)
+# class updateDoctor(APIView):
+#     def put(self, request):
+#         query = request.query_params.get('query')
+#         try:
+#             doctor = Doctor.objects.get(pk=query)
+#             serializer = DoctorSerializer(doctor, data=request.data)
+#             if serializer.is_valid():
+#                 serializer.save()
+#                 return Response({'message': 'Doctor updated successfully'})
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#         except Doctor.DoesNotExist:
+#             return Response({'error': 'Doctor not found'}, status=status.HTTP_404_NOT_FOUND)
