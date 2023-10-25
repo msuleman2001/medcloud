@@ -12,15 +12,15 @@ export default function PatientDetailsForm() {
         !showForm ? "max-h-[50px] " : "max-h-[700px] "
       }`}
     >
-      <div
-        onClick={() => setShowForm((pState) => !pState)}
-        className="flex cursor-pointer justify-between px-5 py-3 rounded-lg "
-      >
+      <div className="flex cursor-pointer justify-between px-5 py-3 rounded-lg ">
         <Title className={styles["title"]} level={4}>
           Personal details
         </Title>
 
-        <span className="flex cursor-pointer gap-1 items-center">
+        <span
+          onClick={() => setShowForm((pState) => !pState)}
+          className="flex cursor-pointer gap-1 items-center"
+        >
           <span className="text-sm">Expand </span>
           {showForm ? <IoIosArrowUp /> : <IoIosArrowDown />}
         </span>

@@ -1,5 +1,5 @@
 import { Button, Form, Input } from "antd";
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import RoundedSelect from "../../general/rounded-select/RoundedSelect";
 import RoundedButton from "../../general/rounded-button/RoundedButton";
 import RoundedInput from "../../general/rounded-input/RoundedInput";
@@ -21,6 +21,17 @@ function formReducer(state, action) {
         [action.fieldName]: action.fieldValue,
         [`${action.fieldName}Error`]: false,
       };
+    case "SET_DEFAULT_VALUES":
+      const { medicineName, medicinePotency, medicineType, medicineDose } =
+        action.defaultValues;
+      console.log(action.defaultValues);
+      return {
+        ...initialState,
+        medicineDose,
+        medicineName,
+        medicinePotency,
+        medicineType,
+      };
     case "RESET":
       return { ...initialState };
     case "CLICK":
@@ -36,7 +47,7 @@ function formReducer(state, action) {
   }
 }
 
-export default function NewMedicineForm({ onMedicineAdd }) {
+export default function NewMedicineForm({ onMedicineAdd, defaultValues }) {
   const [
     {
       medicineName,
@@ -50,6 +61,11 @@ export default function NewMedicineForm({ onMedicineAdd }) {
     },
     dispatch,
   ] = useReducer(formReducer, initialState);
+
+  useEffect(() => {
+    if (defaultValues)
+      dispatch({ type: "SET_DEFAULT_VALUES", defaultValues: defaultValues });
+  }, [defaultValues]);
 
   const handleMedicineNameSelect = (value) => {
     dispatch({

@@ -1,23 +1,26 @@
-import { Table, Typography } from "antd";
+import { Table, Typography, Pagination } from "antd";
 import React, { useEffect } from "react";
-import { useGetDoctorsQuery } from "../../../../store/clinic/clinic-api";
+import {
+  useGetDoctorsQuery,
+  useGetTestProductQuery,
+} from "../../../../store/clinic/clinic-api";
 const { Title } = Typography;
 
 export default function DoctorsTable() {
-  const { data, error } = useGetDoctorsQuery();
+  const { data, error, isLoading } = useGetTestProductQuery();
   const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      phone: "03144832432",
-      email: "abuzain432432@gmail.com",
-    },
-    {
-      key: "2",
-      name: "John",
-      phone: "03144832432",
-      email: "abuzain432432@gmail.com",
-    },
+    // {
+    //   key: "1",
+    //   name: "Mike",
+    //   phone: "03144832432",
+    //   email: "abuzain432432@gmail.com",
+    // },
+    // {
+    //   key: "2",
+    //   name: "John",
+    //   phone: "03144832432",
+    //   email: "abuzain432432@gmail.com",
+    // },
   ];
   const columns = [
     {
@@ -26,34 +29,33 @@ export default function DoctorsTable() {
       key: "name",
     },
     {
-      title: "Phone",
-      dataIndex: "phone",
-      key: "phone",
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
+      title: "price",
+      dataIndex: "price",
+      key: "price",
     },
   ];
   console.log(data);
-  console.log(error);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await fetch("http://127.0.0.1:8000/doctor/doctors/");
-  //       const data = await res.json();
-  //       console.log(data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+  // console.log(error);
+
   return (
-    <div className="shadow-lg bg-white rounded-lg overflow-hidden border border-red-600">
-      <Title level={2}>Doctors</Title>
-      <Table pagination={false} dataSource={dataSource} columns={columns} />
+    <div className="shadow-lg p-4 bg-white rounded-lg overflow-hidden border">
+      <Title level={3} className="px-4">
+        Doctors in database
+      </Title>
+      <Table
+        loading={isLoading}
+        pagination={false}
+        dataSource={data}
+        columns={columns}
+      />
+      <div className="flex justify-center mt-4">
+        <Pagination hideOnSinglePage={true} total={1080} />
+      </div>
     </div>
   );
 }
