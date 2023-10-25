@@ -10,10 +10,10 @@ class Doctor(AbstractUser):
     
     license_no = models.CharField(max_length=54)
     speciality = models.CharField(max_length=100)
-    start_year = models.PositiveIntegerField()
+    start_year = models.DateField(null=True, blank=True)
     clinic_address = models.TextField()
     country = models.CharField(max_length=50)
-    added_by_id = models.PositiveIntegerField()
+    added_by_id = models.PositiveIntegerField(null=True)
     added_datetime = models.DateTimeField(auto_now_add=True)
     last_update_date_time = models.DateTimeField(auto_now=True)
     is_enabled = models.BooleanField(default=False)
@@ -25,4 +25,4 @@ class Doctor(AbstractUser):
 
 
     def __str__(self):
-        return self.name
+        return f"{self.first_name} {self.last_name}"

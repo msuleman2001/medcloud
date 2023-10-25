@@ -18,3 +18,7 @@ class DoctorRegistrationSerializer(serializers.ModelSerializer):
         doctor.set_password(password)
         doctor.save()
         return doctor
+    
+class DoctorLoginSerializer(serializers.Serializer):
+    phone = serializers.CharField()
+    password = serializers.CharField(write_only=True)

@@ -120,9 +120,14 @@
 #         return JsonResponse({'error': str(e)}, status=500)
 from .models import Doctor
 from .serializer import DoctorRegistrationSerializer
+from .serializer import DoctorLoginSerializer
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 
 class addDoctor(APIView):
     def post(self, request):
@@ -132,6 +137,30 @@ class addDoctor(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class DoctorLoginView(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        # Deserialize the incoming data using the DoctorLoginSerializer
+        serializer = DoctorLoginSerializer(data=request.data)
+
+        if serializer.is_valid():
+            phone = serializer.validated_data['phone']
+            password = serializer.validated_data['password']
+
+            try:
+                user = Doctor.objects.get(phone=phone)
+            except Doctor.DoesNotExist:
+                return Response({'detail': 'Doctor does not exist'}, status=400)
+
+            # Check if the provided password is correct
+            if user.check_password(password):
+                # Create or retrieve an authentication token for the user
+                token, created = Token.objects.get_or_create(user=user)
+                return Response({'token': token.key})
+
+        # If authentication fails, return an error response
+        return Response({'detail': 'Invalid credentials'}, status=400)
+    
 
 # class getDoctors(APIView):
 #     def get(self, request):
