@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'corsheaders',
     'Doctor',
     'Patient',
@@ -124,9 +126,23 @@ AUTH_USER_MODEL = 'Doctor.Doctor'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',  # If you need session-based authentication
-        'rest_framework.authentication.TokenAuthentication',    # Use TokenAuthentication for API
+        # 'rest_framework.authentication.SessionAuthentication',  # If you need session-based authentication
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+}
+
+# JWT_AUTH = {
+#     'JWT_PAYLOAD_GET_USERNAME_HANDLER':
+#     'Doctor.utils.jwt_get_username_from_payload_handler',
+# }
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    'SLIDING_TOKEN_LIFETIME': timedelta(days=30),
+    'SLIDING_TOKEN_LIFETIME_REFRESH': timedelta(days=60),
+    'SLIDING_TOKEN_REFRESH_LIFETIME_SLIDING': timedelta(days=90),
+    'SLIDING_TOKEN_SLIDING_LIFETIME_SLIDING': timedelta(days=120),
 }
 
 # Internationalization

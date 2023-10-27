@@ -18,7 +18,7 @@ class Doctor(AbstractUser):
     last_update_date_time = models.DateTimeField(auto_now=True)
     is_enabled = models.BooleanField(default=False)
     remarks = models.TextField()
-    # USERNAME_FIELD = 'phone'  # Set the phone field as the username field
+    USERNAME_FIELD = 'phone'  # Set the phone field as the username field
 
     def get_username(self):
         return self.phone  # Return the phone as the username

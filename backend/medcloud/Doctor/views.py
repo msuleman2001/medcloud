@@ -122,12 +122,13 @@ from .models import Doctor
 from .serializer import DoctorRegistrationSerializer
 from .serializer import DoctorLoginSerializer
 from rest_framework import status
+from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
-from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
+from rest_framework import status
+
+
 
 class addDoctor(APIView):
     def post(self, request):
@@ -137,31 +138,46 @@ class addDoctor(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-class DoctorLoginView(ObtainAuthToken):
+class CustomTokenObtainPairView(TokenObtainPairView):
     def post(self, request, *args, **kwargs):
-        # Deserialize the incoming data using the DoctorLoginSerializer
-        serializer = DoctorLoginSerializer(data=request.data)
+        response = super().post(request, *args, **kwargs)
 
-        if serializer.is_valid():
-            phone = serializer.validated_data['phone']
-            password = serializer.validated_data['password']
+        # Customize the response data if needed
+        if response.status_code == 200:
+            data = response.data
+            # Modify the data as required
+            # For example, you can remove the 'username' key
+            if 'username' in data:
+                del data['username']
 
-            try:
-                user = Doctor.objects.get(phone=phone)
-            except Doctor.DoesNotExist:
-                return Response({'detail': 'Doctor does not exist'}, status=400)
+        return response
 
-            # Check if the provided password is correct
-            if user.check_password(password):
-                # Create or retrieve an authentication token for the user
-                token, created = Token.objects.get_or_create(user=user)
-                return Response({'token': token.key})
+class DoctorLoginView(TokenObtainPairView):
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
 
+        # Check if the response status code is 200 (success)
+        if response.status_code == 200:
+            data = response.data
+            access_token = data.get('access')
+            return Response({'access_token': access_token})
+        
         # If authentication fails, return an error response
-        return Response({'detail': 'Invalid credentials'}, status=400)
+        return response
     
+class CustomTokenObtainPairView(TokenObtainPairView):
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
 
+        # Customize the response data if needed
+        if response.status_code == 200:
+            data = response.data
+            # Modify the data as required
+            # For example, you can remove the 'username' key
+            if 'username' in data:
+                del data['username']
+
+        return response
 # class getDoctors(APIView):
 #     def get(self, request):
 #         query = request.query_params.get('query')
