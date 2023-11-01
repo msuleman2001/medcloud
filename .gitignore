@@ -20,3 +20,8 @@ backend/medcloud/testapp/migrations/0001_initial.py
 backend/medcloud/testapp/migrations
 backend/medcloud/Doctor/migrations/0002_alter_doctor_options_alter_doctor_managers_and_more.py
 
+backend/medcloud/Manager/migrations/0001_initial.py
+backend/medcloud/Manager/migrations/__init__.py
+backend/medcloud/Doctor/migrations/0003_alter_doctor_groups_alter_doctor_user_permissions.py
+backend/medcloud/Manager/__init__.py
+backend/medcloud/Patient/admin.py
