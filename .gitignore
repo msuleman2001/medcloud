@@ -25,3 +25,4 @@ backend/medcloud/Manager/migrations/__init__.py
 backend/medcloud/Doctor/migrations/0003_alter_doctor_groups_alter_doctor_user_permissions.py
 backend/medcloud/Manager/__init__.py
 backend/medcloud/Patient/admin.py
+backend/medcloud/Doctor/models.py
